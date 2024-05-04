@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+		
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+
+ header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Main Styles */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .product-details {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            display: flex;
+            flex-direction: row; /* Change to row for landscape layout */
+            align-items: center;
+            max-width: 800px; /* Adjust maximum width */
+            position: relative; /* Position for the navigation buttons */
+        }
+
+        .product-image-container {
+            position: relative;
+            width: 50%;
+            border-radius: 20px; /* Border radius for the image container */
+            overflow: hidden; /* Hide overflow content */
+        }
+
+        .product-details img {
+            width: 100%; /* Take up full width of the container */
+            max-height: 100%; /* Adjust maximum height */
+            object-fit: cover; /* Maintain aspect ratio and cover container */
+        }
+
+        .description {
+            flex: 1; /* Take up remaining space */
+            padding: 0 20px; /* Add padding */
+        }
+
+        .description h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .description p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select {
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .add-to-cart {
+            margin-top: 50px; /* Adjust the margin-top as needed */
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Navigation Buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+     
+                       <div class="container">
+                <h1>STYLISH & SLEEK</h1>
+                <nav>
+            <ul>
+                <li><a href="main.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="#"><span><i class="fas fa-shopping-cart"></i></span><span id="cartCount">0</span></a></li>
+                <li><a href="#"><span><i class="fas fa-shopping-bag"></i></span></a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+	
+        <div class="product-details">
+            <div class="product-image-container">
+                <button class="prev" onclick="prevImage()">❮</button>
+                <img src="p10.png" alt="Product Image">
+                <button class="next" onclick="nextImage()">❯</button>
+            </div>
+            <div class="description">
+                <h2>Nike Air Max Scorpion</h2>
+                <p>Sleek design, superior comfort. Iconic Air Max cushioning. Perfect for style and performance.
+                </p>
+                <p>Price: ₱13,595.00</p>
+                <p>Stocks: 33</p>
+                <label for="size">Size:</label>
+                <select name="size" id="size">
+            <option value="6">6</option>
+            <option value="6.5">6.5</option>
+            <option value="7">7</option>
+            <option value="7.5">7.5</option>
+            <option value="8">8</option>
+            <option value="8.5">8.5</option>
+            <option value="9">9</option>
+            <option value="9.5">9.5</option>
+            <option value="10">10</option>
+            <option value="10.5">10.5</option>
+            <option value="11">11</option>
+                </select>
+                <div class="add-to-cart">
+                    <button onclick="addToCart()">Add to Cart</button>
+                    <a href="ORDER.html"><button>Buy Now</button></a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Stylish & Sleek. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        var currentIndex = 0; // Track the current image index
+    
+        // Array of image sources
+        var images = [
+            "p10.png",
+            "p1a.png",
+            "p1b.png",
+            "p1c.png",
+            "p1d.png",
+            "p1e.png",
+            "p1f.png",
+             // Add more image sources as needed
+            // Add more image sources as needed
+        ];
+    
+        // Function to show the previous image
+        function prevImage() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            }
+            updateImage();
+        }
+    
+        // Function to show the next image
+        function nextImage() {
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            updateImage();
+        }
+    
+        // Function to update the image source
+        function updateImage() {
+            var imgElement = document.querySelector('.product-details img');
+            imgElement.src = images[currentIndex];
+        }
+    </script>
+</body>
+</html>

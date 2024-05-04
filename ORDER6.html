@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+		
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+
+ header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .description {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .description h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .description p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+
+        button {
+            padding: 8px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .order-total-controls button {
+            width: 30px;
+            padding: 0;
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .order-total-controls span {
+            margin: 0 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+     
+                       <div class="container">
+                <h1>STYLISH & SLEEK</h1>
+                <nav>
+            <ul>
+                <li><a href="main.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="#"><span><i class="fas fa-shopping-cart"></i></span><span id="cartCount">0</span></a></li>
+                <li><a href="#"><span><i class="fas fa-shopping-bag"></i></span></a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="description">
+        <h2 id="productName">Downshifter</h2>
+        <p>Price: ₱2,995.00</p>
+        <p>Stocks: 33</p>
+        <label for="size">Size:</label>
+        <select name="size" id="size">
+            <option value="6">6</option>
+            <option value="6.5">6.5</option>
+            <option value="7">7</option>
+            <option value="7.5">7.5</option>
+            <option value="8">8</option>
+            <option value="8.5">8.5</option>
+            <option value="9">9</option>
+            <option value="9.5">9.5</option>
+            <option value="10">10</option>
+            <option value="10.5">10.5</option>
+            <option value="11">11</option>
+         
+        </select>
+        <br>
+        <label for="orderTotal">Quantity:</label>
+        <div class="order-total-controls">
+            <button onclick="decrementOrderTotal()">-</button>
+            <span id="orderTotal">0</span>
+            <button onclick="incrementOrderTotal()">+</button>
+        </div><br>
+
+        <div class="add-to-cart">
+            <button onclick="showOrderForm()">Order Now</button>
+        </div>
+
+      
+        <div id="orderForm" style="display: none;">
+            <h3>Fill out your order details:</h3>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+                <label for="deliveryAddress">Delivery Address:</label>
+                <input type="text" id="deliveryAddress" name="deliveryAddress" required><br>
+
+                <label for="messageForSeller">Message for Seller:</label>
+                <textarea id="messageForSeller" name="messageForSeller"></textarea><br>
+
+                <label for="paymentOption">Payment Option:</label>
+                <select id="paymentOption" name="paymentOption" required>
+                    <option value="creditCard">Credit Card</option>
+                    <option value="paypal">Cash on Delivery</option>
+                    <option value="paypal">Gcash</option>
+                    <option value="paypal">PayPal</option>
+               
+                </select><br>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var orderTotal = 0;
+
+     
+        function getProductInfoFromURL() {
+            var params = new URLSearchParams(window.location.search);
+            var productName = params.get('product');
+            if (productName) {
+                document.getElementById('productName').textContent = productName;
+            }
+        }
+
+       
+        getProductInfoFromURL();
+
+        function showOrderForm() {
+            document.getElementById('orderForm').style.display = 'block';
+        }
+
+        function submitOrder(event) {
+            event.preventDefault(); 
+
+         
+            var deliveryAddress = document.getElementById('deliveryAddress').value;
+            var messageForSeller = document.getElementById('messageForSeller').value;
+            var paymentOption = document.getElementById('paymentOption').value;
+
+            
+            console.log("Order Details:");
+            console.log("Delivery Address: " + deliveryAddress);
+            console.log("Message for Seller: " + messageForSeller);
+            console.log("Quantity: " + orderTotal);
+            console.log("Payment Option: " + paymentOption);
+
+            
+            window.location.href = "P6.html";
+        }
+
+        function incrementOrderTotal() {
+            orderTotal += 1;
+            updateOrderTotal();
+        }
+
+        function decrementOrderTotal() {
+            if (orderTotal > 0) {
+                orderTotal -= 1;
+                updateOrderTotal();
+            }
+        }
+
+        function updateOrderTotal() {
+            document.getElementById('orderTotal').textContent = orderTotal;
+        }
+    </script>
+</body>
+</html>
